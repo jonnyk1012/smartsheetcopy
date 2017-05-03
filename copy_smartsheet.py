@@ -12,7 +12,6 @@ def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template I
 	print('Check Project Name, {0}'.format(name))
 
 	smartsheet = smartsheet.Smartsheet(talkenid)
-	#smartsheet = smartsheet.Smartsheet('3xr8utkze73sz8asjygx4td5fl')
 
 	# Get list of folders in "Sheets" folder.
 	action = smartsheet.Folders.list_folders(DESTINATION_ID, include_all=True)
@@ -110,6 +109,6 @@ if __name__ == '__main__':
 	main(talkenid, name, sourcefolderid)
     else:
         print('Please sepcify with following format ')
-        print('$ copy_smartsheet.py <Talken ID> <Project Name> [Option: <Source Folder ID>]')
+        print('$ smartsheetcopy.py <Talken ID> <Project Name> [Option: <Source Folder ID>]')
         quit()
 
