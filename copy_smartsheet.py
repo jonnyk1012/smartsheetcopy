@@ -109,6 +109,6 @@ if __name__ == '__main__':
 	main(talkenid, name, sourcefolderid)
     else:
         print('Please sepcify with following format ')
-        print('$ smartsheetcopy.py <Talken ID> <Project Name> [Option: <Source Folder ID>]')
+        print('$ smartsheetcopy <Talken ID> <Project Name> [Option: <Source Folder ID>]')
         quit()
 
