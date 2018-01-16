@@ -1,7 +1,9 @@
 import sys
+import argparse
 
-# test
+
 DEFAULT_SOURCE_FOLDERID = 6248778823952260 #Template ID
+TEMPLATE_FCB_ID = 4025456254052228 # Template for FCB ID
 DESTINATION_ID = 5403602073216900 # Folder ID fo 1.active projects Folder ID
 
 def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template ID
@@ -39,7 +41,10 @@ def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template I
 
 
 	# Check a given template_folderID is exist
-	template_folderid = sourcefolderid # Default is Template folder ID
+        if sourcefolderid == 'FCB':
+                template_folderid = TEMPLATE_FCB_ID
+        else :
+		template_folderid = sourcefolderid # Default is Template folder ID
         #print('template_folderid is {0}'.format(template_folderid))
 
 
@@ -99,17 +104,17 @@ def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template I
 if __name__ == '__main__':
     args = sys.argv
  
-    if len(args) == 3:
-        talkenid = args[1]
-        name     = args[2]
-        main(talkenid, name)
-    elif len(args) == 4:
-	talkenid = args[1]
-	name     = args[2]
-	sourcefolderid = args[3]
-	main(talkenid, name, sourcefolderid)
-    else:
-        print('Please sepcify with following format ')
-        print('$ smartsheetcopy <Talken ID> <Project Name> [Option: <Source Folder ID>]')
-        quit()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--id", dest='talkenid', required=True,
+                        help='set your talked Id of smartsheet')
+    parser.add_argument("-p", "--projectname", dest='project_name', required=True,
+                        help='set your project name')
+    parser.add_argument("-t", "--template", dest='template_folder', required=False, 
+                        default= DEFAULT_SOURCE_FOLDERID,
+                        help='set a folder id of smartsheet or template "FCB" ')
+
+    args = parser.parse_args()
+
+    main(args.talkenid, args.project_name, args.template_folder)
+    quit()
 
