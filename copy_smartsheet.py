@@ -1,10 +1,11 @@
 import sys
 import argparse
-
+import os
 
 DEFAULT_SOURCE_FOLDERID = 6248778823952260 #Template ID
 TEMPLATE_FCB_ID = 4025456254052228 # Template for FCB ID
 DESTINATION_ID = 5403602073216900 # Folder ID fo 1.active projects Folder ID
+TALKEN_ID_PATH = '~/.talkenid/talkenid.txt' #File of Talked id 
 
 def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template ID
 	import smartsheet
@@ -29,7 +30,6 @@ def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template I
 
 	# Check a given folder name is not exist in the list
 	i=0
-        print('Total count {0}'.format(action.total_count))
 
 	for i in range(action.total_count):
 
@@ -49,7 +49,8 @@ def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template I
 
 
 	if DEFAULT_SOURCE_FOLDERID == template_folderid:
-		print('Source FolderID is {0}'.format(template_folderid))
+                action = smartsheet.Folders.get_folder(template_folderid)
+                print('Source FolderID is {0}'.format(action.name))
 	else :
         	i=0
                 id_much = False
@@ -97,24 +98,34 @@ def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template I
                 	})
         	)
 
-        	print('File name is modified as {0}'.format(dst))
+        	#print('File name is modified as {0}'.format(dst))
         	i+=1
 
 
 if __name__ == '__main__':
-    args = sys.argv
- 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--id", dest='talkenid', required=True,
-                        help='set your talked Id of smartsheet')
-    parser.add_argument("-p", "--projectname", dest='project_name', required=True,
-                        help='set your project name')
-    parser.add_argument("-t", "--template", dest='template_folder', required=False, 
-                        default= DEFAULT_SOURCE_FOLDERID,
-                        help='set a folder id of smartsheet or template "FCB" ')
+	args = sys.argv
 
-    args = parser.parse_args()
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-i', '--id', dest='talkenid', required=False,
+                                help='set your talked Id of smartsheet')
+        parser.add_argument('-o', '--output', dest='project_name', required=True,
+                                help='set your project name')
+        parser.add_argument('-s', '--source', dest='template_folder', required=False,
+                                default= DEFAULT_SOURCE_FOLDERID,
+                                help='set a folder id of smartsheet or "FCB" ')
 
-    main(args.talkenid, args.project_name, args.template_folder)
-    quit()
+	args = parser.parse_args()
+
+        if args.talkenid != None:
+                main(args.talkenid, args.project_name, args.template_folder)
+        else:
+                if os.path.isfile(os.path.expanduser(TALKEN_ID_PATH)) == True:  # Open the file(talkenid.txt) to get talkenid
+                        f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
+                        talkenid = f.readline()[:-1]  # Take rid of '\n' by [:-1]
+                        main(talkenid, args.project_name, args.template_folder)
+                        f.close()
+                else: # If there is no file for Talken id, need to specify talken id as argument
+                        print('Specify talken ID by -i or --id')
+
+	quit()
 
