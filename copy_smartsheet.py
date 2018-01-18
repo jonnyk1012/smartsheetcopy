@@ -119,7 +119,7 @@ if __name__ == '__main__':
         if args.talkenid != None:
                 main(args.talkenid, args.project_name, args.template_folder)
         else:
-                f = open(os.path.expanduser("/home/junk/talkenid.txt"),'r')
+                f = open(os.path.expanduser("~/talkenid.txt"),'r')
                 print("file contents-1",f.readline())
                 f.close()
 
