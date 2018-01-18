@@ -120,7 +120,7 @@ if __name__ == '__main__':
         else:
 		user = os.environ.get('USER')
 		print user 
-		TALKEN_ID_PATH = '/home/'+user+'/talkenid/talkenid.txt'
+		TALKEN_ID_PATH = '/home/'+user+'/.talkenid/talkenid.txt'
 
                 f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
                 print("file contents-1",f.readline())
