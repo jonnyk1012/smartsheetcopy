@@ -123,8 +123,8 @@ if __name__ == '__main__':
                 print("file contents-1",f.readline())
                 f.close()
 
-                m = open(os.path.expanduser(TALKEN_ID_PATH),'r')
                 print TALKEN_ID_PATH
+                m = open(os.path.expanduser(TALKEN_ID_PATH),'r')
                 print("file contents-2")
                 talkenid = m.readline()[:-1]  # Take rid of '\n' by [:-1]
                 #main(talkenid, args.project_name, args.template_folder)
