@@ -120,7 +120,18 @@ if __name__ == '__main__':
                 main(args.talkenid, args.project_name, args.template_folder)
         else:
                 f = open(os.path.expanduser("/home/junk/talkenid.txt"),'r')
-                print("file contents",f.readline())
+                print("file contents-1",f.readline())
+                f.close()
+
+                m = open(os.path.expanduser(TALKEN_ID_PATH),'r')
+                print TALKEN_ID_PATH
+                print("file contents-2")
+                talkenid = m.readline()[:-1]  # Take rid of '\n' by [:-1]
+                #main(talkenid, args.project_name, args.template_folder)
+                print ("file contents-3",talkenid)
+                m.close()
+
+
                 if os.path.isfile(os.path.expanduser(TALKEN_ID_PATH)) == True:  # Open the file(talkenid.txt) to get talkenid
                         f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
                         talkenid = f.readline()[:-1]  # Take rid of '\n' by [:-1]
