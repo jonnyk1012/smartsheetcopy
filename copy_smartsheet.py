@@ -119,7 +119,7 @@ if __name__ == '__main__':
                 main(args.talkenid, args.project_name, args.template_folder)
         else:
 		user = os.environ.get('USER')
-		TALKEN_ID_PATH = '/home/'+user+'/.talkenid/talkenid.txt'
+		TALKEN_ID_PATH = '/home/'+user+'/talkenid/talkenid.txt'
 
                 if os.path.isfile(os.path.expanduser(TALKEN_ID_PATH)) == True:  # Open the file(talkenid.txt) to get talkenid
                         f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
