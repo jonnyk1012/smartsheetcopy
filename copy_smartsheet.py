@@ -5,7 +5,7 @@ import os
 DEFAULT_SOURCE_FOLDERID = 6248778823952260 #Template ID
 TEMPLATE_FCB_ID = 4025456254052228 # Template for FCB ID
 DESTINATION_ID = 5403602073216900 # Folder ID fo 1.active projects Folder ID
-TALKEN_ID_PATH = '~/talkenid.txt' #File of Talked id 
+#TALKEN_ID_PATH = '~/talkenid.txt' #File of Talked id 
 
 def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template ID
 	import smartsheet
@@ -121,18 +121,11 @@ if __name__ == '__main__':
         else:
 		user = os.environ.get('USER')
 		print user 
-                f = open(os.path.expanduser("/home/"+user+"/talkenid.txt"),'r')
+		TALKEN_ID_PATH = '/home/'+user+'/talkenid.txt'
+
+                f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
                 print("file contents-1",f.readline())
                 f.close()
-
-                print TALKEN_ID_PATH
-                m = open(os.path.expanduser(TALKEN_ID_PATH),'r')
-                print("file contents-2")
-                talkenid = m.readline()[:-1]  # Take rid of '\n' by [:-1]
-                #main(talkenid, args.project_name, args.template_folder)
-                print ("file contents-3",talkenid)
-                m.close()
-
 
                 if os.path.isfile(os.path.expanduser(TALKEN_ID_PATH)) == True:  # Open the file(talkenid.txt) to get talkenid
                         f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
