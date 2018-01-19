@@ -120,6 +120,8 @@ if __name__ == '__main__':
         if args.talkenid != None:
                 main(args.talkenid, args.project_name, args.template_folder)
         else:
+                f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
+
 		#user = os.environ.get('USER')
 		#TALKEN_ID_PATH = '/home/'+user+'/talkenid/talkenid.txt'
 
