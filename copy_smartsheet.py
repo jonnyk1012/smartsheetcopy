@@ -5,7 +5,8 @@ import os
 DEFAULT_SOURCE_FOLDERID = 6248778823952260 #Template ID
 TEMPLATE_FCB_ID = 2842097200981892 # Template for FCB ID
 DESTINATION_ID = 5403602073216900 # Folder ID fo 1.active projects Folder ID
-TALKEN_ID_PATH = '~/talkenid.txt' # Talken ID
+#TALKEN_ID_PATH = '~/talkenid.txt' # Talken ID   When snap executes, it refer to ~/snap/smartsheet/x
+TALKEN_ID_PATH = '$SNAP_USER_COMMON/talkenid.txt' # Talken ID   When snap executes, it refer to ~/snap/smartsheet/x
 
 def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template ID
 	import smartsheet
