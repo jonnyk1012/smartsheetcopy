@@ -6,8 +6,6 @@ DEFAULT_SOURCE_FOLDERID = 6248778823952260 #Template ID
 TEMPLATE_FCB_ID = 2842097200981892 # Template for FCB ID
 DESTINATION_ID = 5403602073216900 # Folder ID fo 1.active projects Folder ID
 #TALKEN_ID_PATH = '~/talkenid.txt' # Talken ID   When snap executes, it refer to ~/snap/smartsheet/x
-#TALKEN_ID_PATH = '$SNAP_USER_COMMON/talkenid.txt' # Talken ID   When snap executes, it refer to ~/snap/smartsheet/x
-#TALKEN_ID_PATH = os.getenv('SNAP_USER_COMMON')+"/talkenid.txt" # Talken ID   When snap executes, it refer to ~/snap/smartsheet/x
 
 
 def main(talkenid, name, sourcefolderid = DEFAULT_SOURCE_FOLDERID ): #Template ID
@@ -122,16 +120,8 @@ if __name__ == '__main__':
         if args.talkenid != None:
                 main(args.talkenid, args.project_name, args.template_folder)
         else:
-                print('Env is {0}'.format(os.getenv('SNAP_USER_COMMON')))
-                #print('Env list is  {0}'.format(os.environ))
-#                common = os.getenv('SNAP_USER_COMMON')
-#		TALKEN_ID_PATH = common + '/talkenid.txt'
+                #print('Env is {0}'.format(os.getenv('SNAP_USER_COMMON')))
 		TALKEN_ID_PATH = os.getenv('SNAP_USER_COMMON') + '/talkenid.txt'
-
-#                print('TALKEN_ID is {0}'.format(common))
-                f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
-
-		#user = os.environ.get('USER')
 
                 if os.path.isfile(os.path.expanduser(TALKEN_ID_PATH)) == True:  # Open the file(talkenid.txt) to get talkenid
                         f = open(os.path.expanduser(TALKEN_ID_PATH),'r')
