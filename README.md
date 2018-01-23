@@ -7,7 +7,9 @@ You need to activate API function in your smartsheet account.
 http://smartsheet-platform.github.io/api-docs/#direct-api-access
 
 CLI:
-smartsheetcopy <Talken ID> <Project Name> [Option: <Folder ID> (Default is Template folder)]
+smartsheetcopy -o PROJECT_NAME -i TALKENID [-s TEMPLATE_FOLDER] 
 
-Note: 
+Note:
+If you create ~/snap/smartsheetcopy/common/talkenid.txt and discribe your talkenid in taleknid.txt,
+you can omit -i TALKENID 
 SmartSheet API 2.0 does not support to copy reports. You need to modify file name manually. 
